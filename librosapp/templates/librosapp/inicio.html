@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Biblioteca - Inicio
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center">
+
+        <h1 class="display-4">
+            Biblioteca
+        </h1>
+
+        <p class="lead">
+            Sistema de gestión de libros
+        </p>
+
+        <p>
+            Administra los libros registrados en la biblioteca.
+        </p>
+
+        <a href="{% url 'libros' %}" class="btn btn-primary">
+            Ver libros
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

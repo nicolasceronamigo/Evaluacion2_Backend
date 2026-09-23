@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'libros.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tareasdb',
+        'NAME': 'librosdb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost', 

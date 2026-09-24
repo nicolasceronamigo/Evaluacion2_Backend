@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Biblioteca - Eliminar libro
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title mb-4">
+                        Eliminar libro
+                    </h1>
+                    <p>
+                        ¿Estás seguro de que quieres eliminar el siguiente libro?:
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Título</th>
+                                    <th>Autor</th>
+                                    <th>Editorial</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ libro.id }}</td>
+                                    <td>{{ libro.titulo }}</td>
+                                    <td>{{ libro.autor }}</td>
+                                    <td>{{ libro.editorial }}</td>
+                                    <td>{{ libro.get_estado_display }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <form method="post">
+                            {% csrf_token %}
+                            <a href="{% url 'libros' %}" class="btn btn-secondary">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

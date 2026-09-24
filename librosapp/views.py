@@ -67,4 +67,8 @@ def editar_libro(request, id):
                 })
 
 def eliminar_libro(request, id):
-    pass
+    libro = Libro.objects.get(id=id)
+    if request.method == "POST":
+        libro.delete()
+        return redirect("libros")
+    return render(request, "librosapp/eliminar_libro.html", {"libro": libro})

@@ -52,21 +52,8 @@ def editar_libro(request, id):
         if not errores:
             libro.save()
             return redirect("consultar_libro", id=libro.id) 
-        return render(request, "librosapp/editar_libro.html", {
-                    "errores": errores,
-                    "id": libro.id,
-                    "titulo": libro.titulo,
-                    "autor": libro.autor,
-                    "editorial": libro.editorial,
-                    "estado": libro.estado
-                })
-    return render(request, "librosapp/editar_libro.html", {
-                    "id": libro.id,
-                    "titulo": libro.titulo,
-                    "autor": libro.autor,
-                    "editorial": libro.editorial,
-                    "estado": libro.estado
-                })
+        return render(request, "librosapp/editar_libro.html", {"errores": errores, "libro": libro})
+    return render(request, "librosapp/editar_libro.html", {"libro": libro})
 
 def eliminar_libro(request, id):
     libro = Libro.objects.get(id=id)

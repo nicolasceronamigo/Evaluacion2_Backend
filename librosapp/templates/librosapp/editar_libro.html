@@ -10,7 +10,7 @@ Biblioteca - Editar libro
     <div class="card bg-white ">
         <div class="card-body">
             <h1 class="mb-4">
-                Editar libro (Id: {{ id }})
+                Editar libro (Id: {{ libro.id }})
             </h1>
             {% if errores %}
             <div class="alert alert-danger mb-4">
@@ -36,32 +36,32 @@ Biblioteca - Editar libro
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" value="{{ titulo }}" name="titulo" class="form-control"
+                                    <input type="text" value="{{ libro.titulo }}" name="titulo" class="form-control"
                                         maxlength="100" required>
                                 </td>
                                 <td>
-                                    <input type="text" value="{{ autor }}" name="autor" class="form-control"
+                                    <input type="text" value="{{ libro.autor }}" name="autor" class="form-control"
                                         maxlength="100" required>
                                 </td>
                                 <td>
-                                    <input type="text" value="{{ editorial }}" name="editorial" class="form-control"
+                                    <input type="text" value="{{ libro.editorial }}" name="editorial" class="form-control"
                                         maxlength="50" required>
                                 </td>
                                 <td>
                                     <select name="estado" class="form-select">
-                                        <option value="D" {% if estado == "D" %}selected{% endif %}>
+                                        <option value="D" {% if libro.estado == "D" %}selected{% endif %}>
                                             Disponible
                                         </option>
-                                        <option value="P" {% if estado == "P" %}selected{% endif %}>
+                                        <option value="P" {% if libro.estado == "P" %}selected{% endif %}>
                                             Prestado
                                         </option>
-                                        <option value="R" {% if estado == "R" %}selected{% endif %}>
+                                        <option value="R" {% if libro.estado == "R" %}selected{% endif %}>
                                             Reservado
                                         </option>
-                                        <option value="DA" {% if estado == "DA" %}selected{% endif %}>
+                                        <option value="DA" {% if libro.estado == "DA" %}selected{% endif %}>
                                             Dañado
                                         </option>
-                                        <option value="PE" {% if estado == "PE" %}selected{% endif %}>
+                                        <option value="PE" {% if libro.estado == "PE" %}selected{% endif %}>
                                             Perdido
                                         </option>
                                     </select>
@@ -74,7 +74,7 @@ Biblioteca - Editar libro
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>
-                    <a href="{% url 'consultar_libro' id %}" class="btn btn-secondary">
+                    <a href="{% url 'consultar_libro' libro.id %}" class="btn btn-secondary">
                         Cancelar
                     </a>
                 </div>

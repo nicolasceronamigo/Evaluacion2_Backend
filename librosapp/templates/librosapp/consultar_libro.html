@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Biblioteca - Eliminar libro
+Biblioteca - Consultar libro
 {% endblock %}
 
 {% block content %}
@@ -12,11 +12,8 @@ Biblioteca - Eliminar libro
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title mb-4">
-                        Eliminar libro
+                        Consultar libro
                     </h1>
-                    <p>
-                        ¿Estás seguro de que quieres eliminar el siguiente libro?:
-                    </p>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered">
                             <thead class="table-dark">
@@ -39,16 +36,16 @@ Biblioteca - Eliminar libro
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <form method="post">
-                            {% csrf_token %}
-                            <a href="{% url 'consultar_libro' libro.id %}" class="btn btn-secondary">
-                                Cancelar
-                            </a>
-                            <button type="submit" class="btn btn-danger">
-                                Eliminar
-                            </button>
-                        </form>
+                    <div class="d-flex justify-content-end gap-3">
+                        <a href="{% url 'libros' %}" class="btn btn-secondary">
+                            Volver
+                        </a>
+                        <a href="{% url 'editar_libro' libro.id %}" class="btn btn-warning">
+                            Editar
+                        </a>
+                        <a href="{% url 'eliminar_libro' libro.id %}" class="btn btn-danger">
+                            Eliminar
+                        </a>
                     </div>
                 </div>
             </div>

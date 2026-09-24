@@ -51,15 +51,17 @@ def editar_libro(request, id):
             errores.append("El estado no puede estar vacío.")
         if not errores:
             libro.save()
-            return redirect("libros")    
+            return redirect("consultar_libro", id=libro.id) 
         return render(request, "librosapp/editar_libro.html", {
                     "errores": errores,
+                    "id": libro.id,
                     "titulo": libro.titulo,
                     "autor": libro.autor,
                     "editorial": libro.editorial,
                     "estado": libro.estado
                 })
     return render(request, "librosapp/editar_libro.html", {
+                    "id": libro.id,
                     "titulo": libro.titulo,
                     "autor": libro.autor,
                     "editorial": libro.editorial,
@@ -72,3 +74,7 @@ def eliminar_libro(request, id):
         libro.delete()
         return redirect("libros")
     return render(request, "librosapp/eliminar_libro.html", {"libro": libro})
+
+def consultar_libro(request, id):
+    libro = Libro.objects.get(id=id)
+    return render(request, "librosapp/consultar_libro.html", {"libro": libro})

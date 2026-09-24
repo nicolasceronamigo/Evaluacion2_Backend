@@ -7,67 +7,82 @@ Biblioteca - Editar libro
 {% block content %}
 
 <div class="container mt-5">
-    <div class="bg-white bg-opacity-75 p-4 rounded">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h1 class="mb-4">Editar libro</h1>
-            <form method="post">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="titulo" class="form-label">
-                        Título
-                    </label>
-                    <input type="text" value="{{ titulo }}" name="titulo" id="titulo" class="form-control"
-                        maxlength="100" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="autor" class="form-label">
-                        Autor
-                    </label>
-                    <input type="text" value="{{ autor }}" name="autor" id="autor" class="form-control" maxlength="100"
-                        required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="editorial" class="form-label">
-                        Editorial
-                    </label>
-                    <input type="text" value="{{ editorial }}" name="editorial" id="editorial" class="form-control"
-                        maxlength="50" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="estado" class="form-label"> Estado </label> <select name="estado" id="estado"
-                        class="form-select">
-                        <option value="D" {% if estado == "D" %}selected{% endif %}> Disponible </option>
-                        <option value="P" {% if estado == "P" %}selected{% endif %}> Prestado </option>
-                        <option value="R" {% if estado == "R" %}selected{% endif %}> Reservado </option>
-                        <option value="DA" {% if estado == "DA" %}selected{% endif %}> Dañado </option>
-                        <option value="PE" {% if estado == "PE" %}selected{% endif %}> Perdido </option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Guardar
-                </button>
-                <a href="{% url 'libros' %}" class="btn btn-secondary">
-                    Cancelar
-                </a>
-
-            </form>
+    <div class="card bg-white ">
+        <div class="card-body">
+            <h1 class="mb-4">
+                Editar libro (Id: {{ id }})
+            </h1>
             {% if errores %}
-            <div class="alert alert-danger mt-4">
-                <ul>
+            <div class="alert alert-danger mb-4">
+                <ul class="mb-0">
                     {% for error in errores %}
                     <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
             </div>
             {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Editorial</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" value="{{ titulo }}" name="titulo" class="form-control"
+                                        maxlength="100" required>
+                                </td>
+                                <td>
+                                    <input type="text" value="{{ autor }}" name="autor" class="form-control"
+                                        maxlength="100" required>
+                                </td>
+                                <td>
+                                    <input type="text" value="{{ editorial }}" name="editorial" class="form-control"
+                                        maxlength="50" required>
+                                </td>
+                                <td>
+                                    <select name="estado" class="form-select">
+                                        <option value="D" {% if estado == "D" %}selected{% endif %}>
+                                            Disponible
+                                        </option>
+                                        <option value="P" {% if estado == "P" %}selected{% endif %}>
+                                            Prestado
+                                        </option>
+                                        <option value="R" {% if estado == "R" %}selected{% endif %}>
+                                            Reservado
+                                        </option>
+                                        <option value="DA" {% if estado == "DA" %}selected{% endif %}>
+                                            Dañado
+                                        </option>
+                                        <option value="PE" {% if estado == "PE" %}selected{% endif %}>
+                                            Perdido
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-end gap-3">
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <a href="{% url 'consultar_libro' id %}" class="btn btn-secondary">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
+
+
 </div>
 
 {% endblock %}
